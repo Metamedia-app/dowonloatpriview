@@ -229,7 +229,7 @@ export default function Download() {
             </div>
 
             <p style={{ fontSize: '0.8rem', opacity: 0.85, fontWeight: 650, marginTop: 12 }}>
-              Versi Terbaru: v1.0.0-Beta (90MB) • Diperbarui pada: Juni 2026
+              Versi Terbaru: v1.0.0-Beta (120MB) • Diperbarui pada: Juni 2026
             </p>
           </div>
 
