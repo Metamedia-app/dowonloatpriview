@@ -4,167 +4,62 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        background: 'var(--dark)',
-        borderTop: '8px solid var(--dark)',
-        padding: '60px 24px 40px',
-        marginTop: 80,
-        position: 'relative',
-      }}
-    >
-      {/* Decorative top accent line */}
-      <div style={{
-        position: 'absolute',
-        top: -8,
-        left: 0,
-        width: '100%',
-        height: 8,
-        background: 'repeating-linear-gradient(45deg, var(--yellow), var(--yellow) 10px, var(--dark) 10px, var(--dark) 20px)',
-      }} />
-
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: '0 auto',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: 32,
-          paddingBottom: 40,
-        }}
-      >
-        {/* Brand Box */}
-        <div style={{
-          background: 'var(--cream)',
-          border: '3px solid var(--dark)',
-          borderRadius: 16,
-          padding: 24,
-          boxShadow: '6px 6px 0px var(--yellow)',
-          color: 'var(--dark)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 16,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+    <footer id="tentang" className="footer">
+      <div className="footer-grid">
+        {/* Brand */}
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
             <div style={{
-              background: 'var(--yellow)',
-              border: '2px solid var(--dark)',
-              borderRadius: 12,
-              padding: 4,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '2px 2px 0px var(--dark)',
+              width: 38, height: 38, borderRadius: 10,
+              background: 'linear-gradient(135deg, #4361EE, #3A0CA3)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              overflow: 'hidden', flexShrink: 0,
+              boxShadow: '0 4px 12px rgba(67,97,238,0.3)',
             }}>
-              <Image
-                src="/asset/logososmed.png"
-                alt="Metau Logo"
-                width={36}
-                height={36}
-                style={{ borderRadius: 6, display: 'block' }}
-              />
+              <Image src="/asset/logososmed.png" alt="META U" width={34} height={34}
+                style={{ objectFit: 'cover', borderRadius: 8 }} />
             </div>
-            <span style={{ fontSize: '1.6rem', fontWeight: 800, fontFamily: 'var(--font-display)' }}>
-              M<span style={{ color: 'var(--purple)' }}>u</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 800, color: '#0B1437', letterSpacing: '-0.02em' }}>
+              META U
             </span>
           </div>
-          <p style={{ fontSize: '0.9rem', fontWeight: 550, lineHeight: 1.5, opacity: 0.9 }}>
-            Sosial media eksklusif civitas akademika Universitas Metamedia. Temukan, bagikan, dan diskusikan semua hal seputar kampusmu dalam satu aplikasi.
+          <p className="footer-brand-desc">
+            Platform sosial mahasiswa untuk terhubung, berbagi, dan berkarya. Eksklusif untuk civitas akademika Universitas Metamedia.
           </p>
         </div>
 
-        {/* Quick Links Box */}
-        <div style={{
-          background: 'var(--cream)',
-          border: '3px solid var(--dark)',
-          borderRadius: 16,
-          padding: 24,
-          boxShadow: '6px 6px 0px var(--pink)',
-          color: 'var(--dark)',
-        }}>
-          <h4 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.15rem',
-            fontWeight: 800,
-            marginBottom: 20,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            color: 'var(--dark)',
-            borderBottom: '2px solid var(--dark)',
-            paddingBottom: 6,
-            display: 'inline-block',
-          }}>
-            Tautan Cepat 🔗
-          </h4>
-          <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12, fontSize: '0.95rem', fontWeight: 700 }}>
-            <li>
-              <a href="#" style={{ color: 'var(--dark)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                🏠 Halaman Utama
-              </a>
-            </li>
-            <li>
-              <a href="#fitur" style={{ color: 'var(--dark)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                ✨ Fitur Unggulan
-              </a>
-            </li>
-            <li>
-              <a href="#download" style={{ color: 'var(--dark)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                📲 Unduh APK
-              </a>
-            </li>
-          </ul>
+        {/* Navigasi */}
+        <div>
+          <p className="footer-col-title">Navigasi</p>
+          <a href="#" className="footer-link">Beranda</a>
+          <a href="#fitur" className="footer-link">Fitur</a>
+          <a href="#preview" className="footer-link">Preview</a>
+          <a href="#tentang" className="footer-link">Tentang</a>
         </div>
 
-        {/* Contact/Info Box */}
-        <div style={{
-          background: 'var(--cream)',
-          border: '3px solid var(--dark)',
-          borderRadius: 16,
-          padding: 24,
-          boxShadow: '6px 6px 0px var(--green)',
-          color: 'var(--dark)',
-        }}>
-          <h4 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.15rem',
-            fontWeight: 800,
-            marginBottom: 20,
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-            color: 'var(--dark)',
-            borderBottom: '2px solid var(--dark)',
-            paddingBottom: 6,
-            display: 'inline-block',
-          }}>
-            Hubungi Kami 🎓
-          </h4>
-          <p style={{ fontSize: '0.9rem', fontWeight: 550, lineHeight: 1.6 }}>
-            📍 <strong>Universitas Metamedia</strong> <br />
-            Jl. Raya Metamedia No. 45, Kota Padang <br />
-            📧 support@metamedia.ac.id
-          </p>
+        {/* Bantuan */}
+        <div>
+          <p className="footer-col-title">Bantuan</p>
+          <a href="#" className="footer-link">FAQ</a>
+          <a href="#" className="footer-link">Kebijakan Privasi</a>
+          <a href="#" className="footer-link">Syarat &amp; Ketentuan</a>
+          <a href="mailto:support@metamedia.ac.id" className="footer-link">Hubungi Kami</a>
+        </div>
+
+        {/* Ikuti Kami */}
+        <div>
+          <p className="footer-col-title">Ikuti Kami</p>
+          <div className="social-row">
+            <a href="#" className="social-btn" title="Instagram">𝐈</a>
+            <a href="#" className="social-btn" title="YouTube">▶</a>
+            <a href="#" className="social-btn" title="Twitter/X">𝕏</a>
+            <a href="#" className="social-btn" title="Discord">D</a>
+          </div>
         </div>
       </div>
 
-      {/* Credit */}
-      <div style={{
-        maxWidth: 1200,
-        margin: '20px auto 0',
-        paddingTop: 24,
-        borderTop: '2px solid rgba(255, 255, 255, 0.1)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: 16,
-        fontSize: '0.85rem',
-        color: '#aaa',
-        fontWeight: 500,
-      }}>
-        <p>© {new Date().getFullYear()} Universitas Metamedia. All rights reserved.</p>
-        <p style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-          Made with <span style={{ color: 'var(--pink)' }}>💖</span> for Metamedia Students
-        </p>
+      <div className="footer-bottom">
+        © {new Date().getFullYear()} META U. All rights reserved.
       </div>
     </footer>
   );

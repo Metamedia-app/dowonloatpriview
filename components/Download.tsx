@@ -2,278 +2,232 @@
 
 import { motion } from 'framer-motion';
 
-export default function Download() {
-  const downloadScreenContent = (
-    <div
-      style={{
+// Simple SVG QR code pattern (for visual demo only)
+function QRCode() {
+  return (
+    <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Outer frame */}
+      <rect x="2" y="2" width="106" height="106" rx="8" fill="#f0f4ff" stroke="#4361EE" strokeWidth="2"/>
+      {/* Top-left finder */}
+      <rect x="12" y="12" width="28" height="28" rx="3" fill="#0B1437"/>
+      <rect x="17" y="17" width="18" height="18" rx="2" fill="#f0f4ff"/>
+      <rect x="21" y="21" width="10" height="10" rx="1" fill="#0B1437"/>
+      {/* Top-right finder */}
+      <rect x="70" y="12" width="28" height="28" rx="3" fill="#0B1437"/>
+      <rect x="75" y="17" width="18" height="18" rx="2" fill="#f0f4ff"/>
+      <rect x="79" y="21" width="10" height="10" rx="1" fill="#0B1437"/>
+      {/* Bottom-left finder */}
+      <rect x="12" y="70" width="28" height="28" rx="3" fill="#0B1437"/>
+      <rect x="17" y="75" width="18" height="18" rx="2" fill="#f0f4ff"/>
+      <rect x="21" y="79" width="10" height="10" rx="1" fill="#0B1437"/>
+      {/* Data modules (random pattern) */}
+      {[
+        [48,12],[52,12],[56,12],[60,12],
+        [48,18],[56,18],[60,18],
+        [48,24],[52,24],[60,24],
+        [52,30],[56,30],
+        [12,48],[18,48],[24,48],[30,48],
+        [12,52],[24,52],[30,52],
+        [12,56],[18,56],[24,56],
+        [12,60],[24,60],[30,60],
+        [48,48],[54,48],[60,48],[66,48],[72,48],[78,48],[84,48],[90,48],[96,48],
+        [48,54],[60,54],[72,54],[84,54],[96,54],
+        [48,60],[54,60],[60,60],[66,60],[78,60],[84,60],[90,60],
+        [48,66],[60,66],[72,66],[78,66],
+        [48,72],[54,72],[60,72],[66,72],[84,72],[90,72],[96,72],
+        [48,78],[60,78],[72,78],[78,78],[84,78],
+        [48,84],[54,84],[66,84],[72,84],[78,84],[84,84],[96,84],
+        [48,90],[60,90],[66,90],[78,90],[90,90],[96,90],
+        [48,96],[54,96],[60,96],[72,96],[84,96],
+      ].map(([x, y], i) => (
+        <rect key={i} x={x} y={y} width="4" height="4" rx="0.5" fill="#0B1437"/>
+      ))}
+    </svg>
+  );
+}
+
+// Mini install screen for phone
+function InstallScreen() {
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: '276px',
+      position: 'relative',
+      fontFamily: 'var(--font-body)',
+      color: '#0B1437',
+      alignItems: 'center',
+    }}>
+      {/* iOS Status Bar */}
+      <div style={{
+        position: 'absolute',
+        top: '-22px',
+        left: 0,
+        right: 0,
+        height: 14,
         display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        padding: '40px 16px 16px',
-        background: 'var(--dark)',
-        color: '#fff',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        textAlign: 'center',
-        justifyContent: 'center',
-        gap: 16,
-      }}
-    >
-      <div style={{ fontSize: '2.8rem', animation: 'float 4s ease-in-out infinite' }}>📲</div>
-      <div
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: '1.4rem',
-          fontWeight: 800,
-          color: 'var(--yellow)',
-          textTransform: 'uppercase',
-          letterSpacing: 0.5,
-        }}
-      >
-        metau v1.0
+        padding: '0 8px',
+        fontSize: '0.5rem',
+        fontWeight: 600,
+        color: '#0B1437',
+        zIndex: 10,
+      }}>
+        <span>9:41</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
+          {/* Signal */}
+          <svg width="7.5" height="7.5" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="1" y="16" width="3" height="5" rx="0.5"/>
+            <rect x="6" y="12" width="3" height="9" rx="0.5"/>
+            <rect x="11" y="8" width="3" height="13" rx="0.5"/>
+            <rect x="16" y="4" width="3" height="17" rx="0.5"/>
+            <rect x="21" y="1" width="3" height="20" rx="0.5"/>
+          </svg>
+          {/* Wifi */}
+          <svg width="7.5" height="7.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+            <path d="M12 20h.01M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 14 0M1.5 9.5a15 15 0 0 1 21 0"/>
+          </svg>
+          {/* Battery */}
+          <svg width="10" height="6.5" viewBox="0 0 24 14" fill="none" stroke="currentColor" strokeWidth="2">
+            <rect x="1" y="1" width="18" height="12" rx="3" fill="#0B1437"/>
+            <path d="M21 4.5v5" strokeWidth="2.5" strokeLinecap="round"/>
+          </svg>
+        </div>
       </div>
-      <p style={{ fontSize: '0.75rem', opacity: 0.85, lineHeight: 1.45, maxWidth: 180 }}>
-        Masuk menggunakan Akun Portal/NIM mahasiswa kamu.
-      </p>
-      <div
-        style={{
-          marginTop: 'auto',
-          width: '100%',
-          background: 'rgba(255, 255, 255, 0.1)',
-          padding: '8px 10px',
-          borderRadius: 8,
-          border: '1.5px solid rgba(255, 255, 255, 0.2)',
-        }}
-      >
-        <span style={{ fontSize: '0.6rem', fontWeight: 700, color: 'var(--green)' }}>
-          🔒 Kredensial Terenkripsi & Aman
-        </span>
+
+      {/* Center Top Title */}
+      <div style={{
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 4px 10px',
+        borderBottom: '1px solid rgba(67, 97, 238, 0.08)',
+        marginBottom: 14,
+        flexShrink: 0,
+      }}>
+        <span style={{ fontSize: '0.62rem', fontWeight: 600, color: '#6B7A99', cursor: 'pointer' }}>←</span>
+        <span style={{ fontSize: '0.62rem', fontWeight: 700, color: '#0B1437' }}>Instal Aplikasi</span>
+        <span style={{ fontSize: '0.62rem', color: 'transparent' }}>→</span>
+      </div>
+
+      {/* Large App Logo */}
+      <div style={{
+        width: 54,
+        height: 54,
+        borderRadius: 14,
+        background: 'linear-gradient(135deg, #4361EE, #3A0CA3)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        boxShadow: '0 6px 16px rgba(67, 97, 238, 0.25)',
+        marginBottom: 8,
+        color: '#fff',
+        fontSize: '1.4rem',
+        fontWeight: 800,
+        flexShrink: 0,
+      }}>
+        M
+      </div>
+
+      {/* App details info */}
+      <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#0B1437', marginBottom: 2 }}>META U</div>
+      <div style={{ fontSize: '0.52rem', color: '#6B7A99', marginBottom: 12 }}>Versi 1.0.0 • 25 MB</div>
+
+      {/* Unduh button inside simulator */}
+      <div style={{
+        background: 'linear-gradient(135deg, #4361EE, #3A0CA3)',
+        color: '#ffffff',
+        borderRadius: 20,
+        padding: '6px 14px',
+        fontSize: '0.62rem',
+        fontWeight: 700,
+        cursor: 'pointer',
+        boxShadow: '0 3px 8px rgba(67, 97, 238, 0.3)',
+        marginBottom: 14,
+        transition: '0.2s',
+      }}>
+        Unduh Sekarang
+      </div>
+
+      {/* System compatibility specs text */}
+      <div style={{
+        textAlign: 'center',
+        fontSize: '0.48rem',
+        color: '#A3AED0',
+        lineHeight: 1.3,
+      }}>
+        <div style={{ fontWeight: 600, color: '#6B7A99' }}>Persyaratan Sistem</div>
+        <div>Android 7.0 ke atas</div>
       </div>
     </div>
   );
+}
 
+export default function Download() {
   return (
-    <section
-      id="download"
-      style={{
-        padding: '100px 24px',
-        maxWidth: 1200,
-        margin: '0 auto',
-        position: 'relative',
-        zIndex: 1,
-      }}
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="neu-card download-card-padding"
-        style={{
-          background: 'var(--yellow)',
-          position: 'relative',
-          overflow: 'hidden',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        {/* Decorative background shapes */}
-        <div
-          style={{
-            position: 'absolute',
-            top: -20,
-            left: -20,
-            width: 80,
-            height: 80,
-            background: 'var(--pink)',
-            border: '3px solid var(--dark)',
-            borderRadius: '50%',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            bottom: -40,
-            right: -20,
-            width: 120,
-            height: 120,
-            background: 'var(--green)',
-            border: '3px solid var(--dark)',
-            transform: 'rotate(15deg)',
-          }}
-        />
-
-        {/* 2-Column Grid inside the banner card */}
-        <div className="download-grid">
-          {/* Left Column (Info & Buttons) */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: 20,
-              textAlign: 'left',
-              zIndex: 2,
-            }}
-          >
-            <span className="tag" style={{ background: 'var(--white)' }}>
-              📲 Unduh Aplikasi
-            </span>
-
-            <h2
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(1.8rem, 4.5vw, 3.2rem)',
-                fontWeight: 800,
-                lineHeight: 1.1,
-                color: 'var(--dark)',
-                maxWidth: 600,
-              }}
-            >
-              Siap Gabung dengan <br />
-              Ribuan Anak Metamedia?
-            </h2>
-
-            <p
-              style={{
-                fontSize: '1.05rem',
-                color: 'var(--dark)',
-                maxWidth: 540,
-                lineHeight: 1.6,
-                fontWeight: 550,
-                opacity: 0.9,
-              }}
-            >
-              Unduh aplikasi Metau sekarang juga. Bebas pasang untuk seluruh civitas akademika Universitas Metamedia secara gratis.
-            </p>
-
-            {/* Buttons Group */}
-            <div
-              className="download-btn-group"
-              style={{
-                display: 'flex',
-                gap: 16,
-                marginTop: 10,
-                width: '100%',
-              }}
-            >
-              {/* Active Android apk download */}
-              <motion.a
-                href="/metau-release-v1.0.apk"
-                download
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="neu-btn"
-                style={{
-                  background: 'var(--dark)',
-                  color: 'var(--white)',
-                  padding: '16px 28px',
-                  fontSize: '1.05rem',
-                  boxShadow: '4px 4px 0px var(--pink)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: 2,
-                  textAlign: 'left',
-                  lineHeight: 1.2,
-                  textDecoration: 'none',
-                }}
-              >
-                <span style={{ fontSize: '0.7rem', opacity: 0.8, textTransform: 'uppercase', letterSpacing: 0.5 }}>Unduh file untuk</span>
-                <span style={{ fontWeight: 800, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  Android (.APK) <span style={{ fontSize: '1.2rem' }}>🤖</span>
-                </span>
-              </motion.a>
-
-              {/* Disabled iOS button */}
-              <div
-                className="neu-btn neu-btn-disabled"
-                style={{
-                  background: '#e0e0e0',
-                  color: '#777777',
-                  padding: '16px 28px',
-                  fontSize: '1.05rem',
-                  border: '3px solid #888888',
-                  boxShadow: 'none',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  gap: 2,
-                  textAlign: 'left',
-                  lineHeight: 1.2,
-                  position: 'relative',
-                }}
-              >
-                <span style={{ fontSize: '0.7rem', opacity: 0.7, textTransform: 'uppercase', letterSpacing: 0.5 }}>Belum Tersedia</span>
-                <span style={{ fontWeight: 800, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  iPhone (.iOS) <span style={{ fontSize: '1.2rem' }}>🍏</span>
-                </span>
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: -10,
-                    right: -10,
-                    background: 'var(--orange)',
-                    color: 'white',
-                    fontSize: '0.65rem',
-                    fontWeight: 800,
-                    padding: '2px 8px',
-                    border: '2px solid var(--dark)',
-                    borderRadius: '6px',
-                    transform: 'rotate(-5deg)',
-                    boxShadow: '1px 1px 0px #000',
-                  }}
-                >
-                  Belum Rilis!
-                </span>
-              </div>
+    <section id="download" className="download-section">
+      <div className="download-card">
+        {/* Left: Phone mockup */}
+        <motion.div
+          className="download-phone"
+          initial={{ opacity: 0, x: -40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as const }}
+        >
+          <div className="dl-phone-wrap">
+            <div className="dl-phone-inner">
+              <InstallScreen />
             </div>
-
-            <p style={{ fontSize: '0.8rem', opacity: 0.85, fontWeight: 650, marginTop: 12 }}>
-              Versi Terbaru: v1.0.0-Beta (120MB) • Diperbarui pada: Juni 2026
-            </p>
           </div>
+        </motion.div>
 
-          {/* Right Column (Phone Mockup inside Download widget) */}
-          <div className="download-phone-col" style={{ zIndex: 2 }}>
-            <motion.div
-              whileHover={{ rotate: -1, scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-              className="phone-mockup"
-              style={{
-                cursor: 'pointer',
-                borderColor: 'var(--dark)',
-                boxShadow: '8px 8px 0px var(--dark)',
-                width: 220,
-                height: 440,
-              }}
-            >
-              <div className="phone-notch" style={{ background: 'var(--dark)' }} />
-              <div className="phone-screen">{downloadScreenContent}</div>
-            </motion.div>
+        {/* Middle: Text + button */}
+        <motion.div
+          className="download-middle"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as const, delay: 0.1 }}
+        >
+          <h2 className="download-title">Unduh Sekarang</h2>
+          <p className="download-sub">
+            Gabung dengan ribuan mahasiswa lainnya di META U dan mulai perjalanan kampusmu yang lebih seru.
+          </p>
+          <motion.a
+            href="/metau-release-v1.0.apk"
+            download
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            className="btn btn-primary"
+            style={{ fontSize: '1rem', padding: '14px 32px', display: 'inline-flex' }}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.58 11.58 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.55-.22.83L6.4 9.48A9.048 9.048 0 0 0 3 16.6h18a9.048 9.048 0 0 0-3.4-7.12zM7.5 14.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm9 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+            </svg>
+            Download APK &nbsp;· Versi 1.0.0 • 25 MB
+          </motion.a>
+          <p style={{ marginTop: 14, fontSize: '0.8rem', color: '#A3AED0' }}>
+            Tersedia gratis untuk Android&nbsp;8.0+&nbsp;·&nbsp;iOS coming soon
+          </p>
+        </motion.div>
 
-            {/* Pink 'Free Download' badge near the phone mockup */}
-            <motion.div
-              className="neu-card float-anim-3"
-              style={{
-                position: 'absolute',
-                bottom: '15%',
-                right: '0px',
-                background: 'var(--pink)',
-                color: 'var(--white)',
-                padding: '8px 16px',
-                zIndex: 10,
-                transform: 'rotate(-6deg)',
-                fontWeight: 700,
-                fontSize: '0.85rem',
-                border: '2.5px solid var(--dark)',
-                boxShadow: '3px 3px 0px var(--dark)',
-              }}
-            >
-              🎓 Free Download
-            </motion.div>
+        {/* Right: QR code */}
+        <motion.div
+          className="download-qr"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
+        >
+          <div className="qr-box">
+            <QRCode />
           </div>
-        </div>
-      </motion.div>
+          <p className="qr-label">Scan untuk unduh<br />langsung di ponselmu</p>
+        </motion.div>
+      </div>
     </section>
   );
 }

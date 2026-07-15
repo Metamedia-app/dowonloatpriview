@@ -2,115 +2,63 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }}
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-        background: 'var(--cream)',
-        borderBottom: '3px solid var(--dark)',
-      }}
+      className={`navbar${scrolled ? ' scrolled' : ''}`}
     >
-      <div
-        className="navbar-container"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: '0 32px',
-          height: 70,
-        }}
-      >
+      <div className="navbar-inner">
         {/* Logo */}
-        <motion.a
-          href="#"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
-          style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 12 }}
-        >
-          {/* Logo image in yellow neubrutal box */}
-          <div style={{
-            width: 44,
-            height: 44,
-            background: 'var(--yellow)',
-            border: '2.5px solid var(--dark)',
-            borderRadius: 12,
-            boxShadow: '3px 3px 0px var(--dark)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
-            flexShrink: 0,
-            marginLeft: 10,
-          }}>
+        <a href="#" className="nav-logo">
+          <div className="nav-logo-icon">
             <Image
               src="/asset/logososmed.png"
-              alt="Metau"
-              width={38}
-              height={38}
-              style={{ borderRadius: 8, display: 'block', objectFit: 'cover' }}
+              alt="META U"
+              width={36}
+              height={36}
+              style={{ objectFit: 'cover', borderRadius: 8 }}
               priority
             />
           </div>
-          {/* Brand name */}
-          <span style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1.55rem',
-            fontWeight: 800,
-            color: 'var(--dark)',
-            letterSpacing: '-0.5px',
-            marginLeft: 5,
-          }}>
-            M<span style={{ color: 'var(--purple)' }}>u</span>
-          </span>
-        </motion.a>
+          <span className="nav-logo-text">META U</span>
+        </a>
 
-        {/* Right side nav */}
-        <nav style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
-          <a
-            href="#fitur"
-            className="nav-link"
-            style={{
-              textDecoration: 'none',
-              color: 'var(--dark)',
-              fontWeight: 700,
-              fontSize: '0.95rem',
-            }}
-          >
-            Fitur
-          </a>
-          <motion.a
-            href="#download"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 6,
-              fontFamily: 'var(--font-body)',
-              fontWeight: 700,
-              fontSize: '0.9rem',
-              padding: '10px 20px',
-              background: 'var(--dark)',
-              color: 'var(--yellow)',
-              border: '2.5px solid var(--dark)',
-              borderRadius: 10,
-              boxShadow: '3px 3px 0px var(--purple)',
-              textDecoration: 'none',
-              transition: 'box-shadow 0.15s, transform 0.15s',
-            }}
-          >
-            Download APK 🤖
-          </motion.a>
+        {/* Nav links */}
+        <nav className="nav-links">
+          <a href="#" className="nav-link">Beranda</a>
+          <a href="#fitur" className="nav-link">Fitur</a>
+          <a href="#preview" className="nav-link">Preview</a>
+          <a href="#tentang" className="nav-link">Tentang</a>
         </nav>
+
+        {/* CTA */}
+        <motion.a
+          href="#download"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          className="btn btn-primary"
+          style={{ fontSize: '0.88rem', padding: '11px 22px' }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7,10 12,15 17,10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download APK
+        </motion.a>
       </div>
     </motion.header>
   );

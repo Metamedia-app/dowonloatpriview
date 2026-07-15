@@ -4,155 +4,81 @@ import { motion } from 'framer-motion';
 
 const features = [
   {
-    icon: '📸',
-    title: 'Feed & Post',
-    desc: 'Bagikan momen kampusmu — tugas kece, kegiatan UKM, atau sekadar selfie di kantin.',
-    bg: 'var(--yellow)',
+    icon: '👥',
+    title: 'Feed Kampus',
+    desc: 'Lihat update, kegiatan, dan informasi terbaru dari kampus.',
+    iconBg: '#EEF2FF',
+    iconColor: '#4361EE',
   },
   {
-    icon: '🎞️',
-    title: 'Story 24 Jam',
-    desc: 'Update story harian yang otomatis hilang dalam 24 jam. Pas buat info dadakan!',
-    bg: 'var(--orange)',
+    icon: '📚',
+    title: 'Materi Akademik',
+    desc: 'Upload & download materi, jurnal, tugas, dan referensi.',
+    iconBg: '#ECFDF5',
+    iconColor: '#06D6A0',
+  },
+  {
+    icon: '🏆',
+    title: 'Prestasi & Badge',
+    desc: 'Dapatkan badge dan apresiasi atas setiap pencapaianmu.',
+    iconBg: '#F5F3FF',
+    iconColor: '#7B2FFF',
   },
   {
     icon: '💬',
-    title: 'Real-time Chat',
-    desc: 'DM teman sekelas, dosen, atau alumni langsung dari aplikasi tanpa nomor HP.',
-    bg: 'var(--pink)',
+    title: 'Diskusi & Komunitas',
+    desc: 'Bergabung dalam komunitas dan diskusi sesuai minatmu.',
+    iconBg: '#FFF7ED',
+    iconColor: '#F48C06',
   },
   {
-    icon: '🔔',
-    title: 'Notifikasi Kampus',
-    desc: 'Dapat info jadwal kuliah, pengumuman, dan event langsung di timeline-mu.',
-    bg: 'var(--purple)',
-  },
-  {
-    icon: '👥',
-    title: 'Komunitas Prodi',
-    desc: 'Bergabung dengan grup prodi, angkatan, dan komunitas minat yang ada di kampus.',
-    bg: 'var(--green)',
-  },
-  {
-    icon: '🎓',
-    title: 'Khusus Civitas',
-    desc: 'Eksklusif untuk mahasiswa, dosen, dan alumni Universitas Metamedia. Aman dan terpercaya.',
-    bg: 'var(--blue)',
+    icon: '🛡️',
+    title: 'Aman & Terkontrol',
+    desc: 'Data aman, lingkungan positif, dan moderasi oleh admin kampus.',
+    iconBg: '#FFF1F2',
+    iconColor: '#F72585',
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 60, scale: 0.95 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1] as const,
-    },
-  }),
-};
-
 export default function Features() {
   return (
-    <section
-      id="fitur"
-      style={{
-        padding: '100px 24px',
-        maxWidth: 1200,
-        margin: '0 auto',
-        position: 'relative',
-      }}
-    >
-      {/* Header */}
+    <section id="fitur" className="features-section">
+      {/* Section title */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-        style={{ textAlign: 'center', marginBottom: 64 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] as const }}
       >
-        <span className="tag" style={{ marginBottom: 16 }}>✨ Fitur Unggulan</span>
-        <h2
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(2rem, 5vw, 3.2rem)',
-            fontWeight: 800,
-            lineHeight: 1.1,
-            marginTop: 12,
-          }}
-        >
-          Semua yang kamu butuhkan
-          <br />
-          <span style={{ color: 'var(--purple)' }}>ada di sini 🚀</span>
+        <h2 className="section-label">
+          Fitur <span className="gradient-text">Unggulan</span>
         </h2>
-        <p style={{ marginTop: 16, color: '#555', fontSize: '1.1rem', maxWidth: 500, margin: '16px auto 0' }}>
-          Satu aplikasi untuk seluruh aktivitas sosial civitas akademika Universitas Metamedia.
-        </p>
+        <div className="section-underline" />
       </motion.div>
 
-      {/* Grid */}
-      <div className="features-grid">
+      {/* Cards */}
+      <div className="features-strip">
         {features.map((f, i) => (
           <motion.div
             key={f.title}
-            custom={i}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
+            className="feature-card"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-30px' }}
+            transition={{ delay: i * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
             whileHover={{ y: -6, transition: { duration: 0.2 } }}
-            className="neu-card"
-            style={{
-              background: f.bg,
-              padding: '32px 28px',
-              cursor: 'default',
-            }}
           >
             <div
-              style={{
-                fontSize: '2.5rem',
-                marginBottom: 16,
-                display: 'inline-block',
-                animation: `float ${5 + i}s ease-in-out infinite`,
-              }}
+              className="feature-icon"
+              style={{ background: f.iconBg, color: f.iconColor }}
             >
               {f.icon}
             </div>
-            <h3
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '1.3rem',
-                fontWeight: 800,
-                marginBottom: 10,
-              }}
-            >
-              {f.title}
-            </h3>
-            <p style={{ fontSize: '0.95rem', lineHeight: 1.6, opacity: 0.85 }}>{f.desc}</p>
+            <h3 className="feature-name">{f.title}</h3>
+            <p className="feature-desc">{f.desc}</p>
           </motion.div>
         ))}
       </div>
-
-      {/* Decorative circle — pure CSS float animation, no Framer Motion scroll tracking */}
-      <div
-        className="float-anim-2"
-        style={{
-          position: 'absolute',
-          right: '5%',
-          top: '15%',
-          width: 180,
-          height: 180,
-          borderRadius: '50%',
-          border: '4px solid var(--dark)',
-          background: 'var(--pink)',
-          boxShadow: 'var(--shadow-xl)',
-          zIndex: -1,
-          pointerEvents: 'none',
-        }}
-      />
     </section>
   );
 }
