@@ -225,7 +225,7 @@ export default function Download() {
           <div className="qr-box">
             <QRCode />
           </div>
-          <p className="qr-label">Scan untuk unduh<br />langsung di ponselmu</p>
+          <p className="qr-label">Scan dan Bagikan Ke Temanmu<br />langsung di ponselmu</p>
         </motion.div>
       </div>
     </section>
