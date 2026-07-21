@@ -1,48 +1,18 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-// Simple SVG QR code pattern (for visual demo only)
+// QR code image component using next/image
 function QRCode() {
   return (
-    <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-      {/* Outer frame */}
-      <rect x="2" y="2" width="106" height="106" rx="8" fill="#f0f4ff" stroke="#4361EE" strokeWidth="2"/>
-      {/* Top-left finder */}
-      <rect x="12" y="12" width="28" height="28" rx="3" fill="#0B1437"/>
-      <rect x="17" y="17" width="18" height="18" rx="2" fill="#f0f4ff"/>
-      <rect x="21" y="21" width="10" height="10" rx="1" fill="#0B1437"/>
-      {/* Top-right finder */}
-      <rect x="70" y="12" width="28" height="28" rx="3" fill="#0B1437"/>
-      <rect x="75" y="17" width="18" height="18" rx="2" fill="#f0f4ff"/>
-      <rect x="79" y="21" width="10" height="10" rx="1" fill="#0B1437"/>
-      {/* Bottom-left finder */}
-      <rect x="12" y="70" width="28" height="28" rx="3" fill="#0B1437"/>
-      <rect x="17" y="75" width="18" height="18" rx="2" fill="#f0f4ff"/>
-      <rect x="21" y="79" width="10" height="10" rx="1" fill="#0B1437"/>
-      {/* Data modules (random pattern) */}
-      {[
-        [48,12],[52,12],[56,12],[60,12],
-        [48,18],[56,18],[60,18],
-        [48,24],[52,24],[60,24],
-        [52,30],[56,30],
-        [12,48],[18,48],[24,48],[30,48],
-        [12,52],[24,52],[30,52],
-        [12,56],[18,56],[24,56],
-        [12,60],[24,60],[30,60],
-        [48,48],[54,48],[60,48],[66,48],[72,48],[78,48],[84,48],[90,48],[96,48],
-        [48,54],[60,54],[72,54],[84,54],[96,54],
-        [48,60],[54,60],[60,60],[66,60],[78,60],[84,60],[90,60],
-        [48,66],[60,66],[72,66],[78,66],
-        [48,72],[54,72],[60,72],[66,72],[84,72],[90,72],[96,72],
-        [48,78],[60,78],[72,78],[78,78],[84,78],
-        [48,84],[54,84],[66,84],[72,84],[78,84],[84,84],[96,84],
-        [48,90],[60,90],[66,90],[78,90],[90,90],[96,90],
-        [48,96],[54,96],[60,96],[72,96],[84,96],
-      ].map(([x, y], i) => (
-        <rect key={i} x={x} y={y} width="4" height="4" rx="0.5" fill="#0B1437"/>
-      ))}
-    </svg>
+    <Image
+      src="/asset/qr.png"
+      alt="QR Code"
+      width={110}
+      height={110}
+      style={{ objectFit: 'contain', borderRadius: '4px' }}
+    />
   );
 }
 
@@ -197,8 +167,9 @@ export default function Download() {
             Gabung dengan ribuan mahasiswa lainnya di META U dan mulai perjalanan kampusmu yang lebih seru.
           </p>
           <motion.a
-            href="/metau-release-v1.0.apk"
-            download
+            href="https://github.com/edy2209/meta-u/releases/download/v1.0.0/application-4ab1cc8b-84d7-4d99-9edc-69b3ac9d96bf.apk"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.96 }}
             className="btn btn-primary"
@@ -207,7 +178,7 @@ export default function Download() {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.58 11.58 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.55-.22.83L6.4 9.48A9.048 9.048 0 0 0 3 16.6h18a9.048 9.048 0 0 0-3.4-7.12zM7.5 14.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm9 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
             </svg>
-            Download APK &nbsp;· Versi 1.0.0 • 25 MB
+            Download APK &nbsp;· Versi 1.0.0 • 116 MB
           </motion.a>
           <p style={{ marginTop: 14, fontSize: '0.8rem', color: '#A3AED0' }}>
             Tersedia gratis untuk Android&nbsp;8.0+&nbsp;·&nbsp;iOS coming soon

@@ -11,6 +11,9 @@ export const metadata: Metadata = {
     description: "Platform sosial media eksklusif civitas Universitas Metamedia",
     type: "website",
   },
+  icons: {
+    icon: "/asset/logososmed.png",
+  },
 };
 
 export default function RootLayout({
