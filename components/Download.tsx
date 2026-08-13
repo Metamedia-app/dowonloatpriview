@@ -48,20 +48,20 @@ function InstallScreen() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
           {/* Signal */}
           <svg width="7.5" height="7.5" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="1" y="16" width="3" height="5" rx="0.5"/>
-            <rect x="6" y="12" width="3" height="9" rx="0.5"/>
-            <rect x="11" y="8" width="3" height="13" rx="0.5"/>
-            <rect x="16" y="4" width="3" height="17" rx="0.5"/>
-            <rect x="21" y="1" width="3" height="20" rx="0.5"/>
+            <rect x="1" y="16" width="3" height="5" rx="0.5" />
+            <rect x="6" y="12" width="3" height="9" rx="0.5" />
+            <rect x="11" y="8" width="3" height="13" rx="0.5" />
+            <rect x="16" y="4" width="3" height="17" rx="0.5" />
+            <rect x="21" y="1" width="3" height="20" rx="0.5" />
           </svg>
           {/* Wifi */}
           <svg width="7.5" height="7.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-            <path d="M12 20h.01M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 14 0M1.5 9.5a15 15 0 0 1 21 0"/>
+            <path d="M12 20h.01M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 14 0M1.5 9.5a15 15 0 0 1 21 0" />
           </svg>
           {/* Battery */}
           <svg width="10" height="6.5" viewBox="0 0 24 14" fill="none" stroke="currentColor" strokeWidth="2">
-            <rect x="1" y="1" width="18" height="12" rx="3" fill="#0B1437"/>
-            <path d="M21 4.5v5" strokeWidth="2.5" strokeLinecap="round"/>
+            <rect x="1" y="1" width="18" height="12" rx="3" fill="#0B1437" />
+            <path d="M21 4.5v5" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </div>
       </div>
@@ -167,7 +167,7 @@ export default function Download() {
             Gabung dengan ribuan mahasiswa lainnya di META U dan mulai perjalanan kampusmu yang lebih seru.
           </p>
           <motion.a
-            href="https://github.com/edy2209/meta-u/releases/download/v1.0.0/application-4ab1cc8b-84d7-4d99-9edc-69b3ac9d96bf.apk"
+            href="https://github.com/edy2209/meta-u/releases/download/v1.0.0/Meta-U-12.apk"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.04 }}
@@ -176,12 +176,12 @@ export default function Download() {
             style={{ fontSize: '1rem', padding: '14px 32px', display: 'inline-flex' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.58 11.58 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.55-.22.83L6.4 9.48A9.048 9.048 0 0 0 3 16.6h18a9.048 9.048 0 0 0-3.4-7.12zM7.5 14.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm9 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/>
+              <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.58 11.58 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.55-.22.83L6.4 9.48A9.048 9.048 0 0 0 3 16.6h18a9.048 9.048 0 0 0-3.4-7.12zM7.5 14.5c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm9 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
             </svg>
             Download APK &nbsp;· Versi 1.0.0 • 116 MB
           </motion.a>
           <p style={{ marginTop: 14, fontSize: '0.8rem', color: '#A3AED0' }}>
-            Tersedia gratis untuk Android&nbsp;8.0+&nbsp;·&nbsp;iOS coming soon
+            Tersedia gratis untuk Android&nbsp;15.0+&nbsp;·&nbsp;iOS coming soon
           </p>
         </motion.div>
 
