@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 function QRCode() {
   return (
     <Image
-      src="/asset/qr.png"
+      src="/asset/metau.jpg"
       alt="QR Code"
       width={110}
       height={110}
