@@ -1,18 +1,122 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 // QR code image component using next/image
-function QRCode() {
+function QRCode({ onClick }: { onClick: () => void }) {
   return (
-    <Image
-      src="/asset/metau.jpg"
-      alt="QR Code"
-      width={110}
-      height={110}
-      style={{ objectFit: 'contain', borderRadius: '4px' }}
-    />
+    <motion.div
+      onClick={onClick}
+      whileHover={{ scale: 1.07 }}
+      whileTap={{ scale: 0.95 }}
+      style={{ cursor: 'zoom-in', display: 'inline-block', borderRadius: '4px', lineHeight: 0 }}
+      title="Klik untuk perbesar"
+    >
+      <Image
+        src="/asset/metau.jpg"
+        alt="QR Code"
+        width={110}
+        height={110}
+        style={{ objectFit: 'contain', borderRadius: '4px', display: 'block' }}
+      />
+    </motion.div>
+  );
+}
+
+// Lightbox overlay shown when QR is clicked
+function QRLightbox({ onClose }: { onClose: () => void }) {
+  return (
+    <AnimatePresence>
+      <motion.div
+        key="lightbox-backdrop"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        onClick={onClose}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9999,
+          background: 'rgba(0, 0, 0, 0.75)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {/* Close button */}
+        <motion.button
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1, duration: 0.2 }}
+          onClick={(e) => { e.stopPropagation(); onClose(); }}
+          style={{
+            position: 'absolute',
+            top: 20,
+            right: 24,
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            border: 'none',
+            background: 'rgba(255,255,255,0.15)',
+            backdropFilter: 'blur(4px)',
+            color: '#fff',
+            fontSize: '1.3rem',
+            fontWeight: 700,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            lineHeight: 1,
+            transition: 'background 0.2s',
+          }}
+          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.28)')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.15)')}
+          aria-label="Tutup"
+        >
+          ✕
+        </motion.button>
+
+        {/* QR image enlarged */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.75 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.75 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          onClick={e => e.stopPropagation()}
+          style={{
+            background: '#fff',
+            borderRadius: 16,
+            padding: 20,
+            boxShadow: '0 30px 80px rgba(0,0,0,0.45)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 12,
+          }}
+        >
+          <Image
+            src="/asset/metau.jpg"
+            alt="QR Code (besar)"
+            width={280}
+            height={280}
+            style={{ objectFit: 'contain', borderRadius: 8, display: 'block' }}
+          />
+          <p style={{
+            margin: 0,
+            fontSize: '0.82rem',
+            color: '#6B7A99',
+            fontFamily: 'var(--font-body)',
+            textAlign: 'center',
+          }}>
+            Scan QR ini untuk download META U
+          </p>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 
@@ -136,7 +240,11 @@ function InstallScreen() {
 }
 
 export default function Download() {
+  const [qrOpen, setQrOpen] = useState(false);
+
   return (
+    <>
+      {qrOpen && <QRLightbox onClose={() => setQrOpen(false)} />}
     <section id="download" className="download-section">
       <div className="download-card">
         {/* Left: Phone mockup */}
@@ -194,11 +302,12 @@ export default function Download() {
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as const, delay: 0.2 }}
         >
           <div className="qr-box">
-            <QRCode />
+            <QRCode onClick={() => setQrOpen(true)} />
           </div>
           <p className="qr-label">Scan dan Bagikan Ke Temanmu<br />langsung di ponselmu</p>
         </motion.div>
       </div>
     </section>
+    </>
   );
 }
